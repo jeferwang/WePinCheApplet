@@ -1,0 +1,69 @@
+<view class="page">
+  <!--表单组-->
+  <view class="body">
+    <view class="weui-cells">
+      <!--出发地-->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">出发地</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="填写出发地" />
+        </view>
+      </view>
+      <!--目的地-->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">目的地</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="填写目的地" />
+        </view>
+      </view>
+      <!--出发日期-->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">出发日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" value="{{date}}" start="2017-10-01" end="2099-12-31" bindchange="bindDateChange">
+            <view class="weui-input">{{formData.date}}</view>
+          </picker>
+        </view>
+      </view>
+      <!--出发时间-->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">出发时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+            <view class="weui-input">{{formData.time}}</view>
+          </picker>
+        </view>
+      </view>
+      <!--人数-->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">人数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{formData.peopleNum}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--底部按钮组-->
+  <view class="weui-footer_fixed-bottom" style="bottom: 0;font-size: 28rpx;">
+    <view class="btn-group">
+      <view class="btn-container width100">
+        <view style="flex-grow: 1;">
+          全部
+        </view>
+        <view style="flex-grow: 1;" class="active">
+          完成
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,59 +1,48 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/my/index",
-    "pages/my/info",
-    "pages/my/list",
-    "pages/my/fav",
-    "pages/my/mydyn",
-    "pages/info/index",
-    "pages/info/add",
-    "pages/info/edit",
-    "pages/dynamic/index",
-    "pages/dynamic/add",
-    "pages/comment/index",
-    "pages/notice/index",
-    "pages/msg/index",
-    "pages/msg/list",
-    "pages/my/appointment",
-    "pages/appointment/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#019aff",
-    "navigationBarTitleText": "同城拼车",
-    "navigationBarTextStyle": "light",
-    "enablePullDownRefresh": true
-  },
-  "tabBar": {
-    "color": "#aaa",
-    "selectedColor": "#019aff",
-    "backgroundColor": "#fff",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "拼车",
-        "iconPath": "img/auto.png",
-        "selectedIconPath": "img/auto1.png"
-      },
-      {
-        "pagePath": "pages/dynamic/index",
-        "text": "发布",
-        "iconPath": "img/favorite.png",
-        "selectedIconPath": "img/favorite1.png"
-      },
-      {
-        "pagePath": "pages/my/index",
-        "text": "我的",
-        "iconPath": "img/account.png",
-        "selectedIconPath": "img/account1.png"
-      }
-    ]
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 10000
-  },
-  "debug": true
+	"pages": [
+		"pages/verify/verify",
+		"pages/home/home",
+		"pages/publish/publish",
+		"pages/index/select/select",
+		"pages/index/index"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"backgroundColor": "f5f5f5",
+		"navigationBarBackgroundColor": "#019aff",
+		"navigationBarTitleText": "微拼车",
+		"navigationBarTextStyle": "light",
+		"enablePullDownRefresh": true
+	},
+	"tabBar": {
+		"color": "#aaa",
+		"selectedColor": "#019aff",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "拼车",
+				"iconPath": "img/auto.png",
+				"selectedIconPath": "img/auto1.png"
+			},
+			{
+				"pagePath": "pages/dynamic/index",
+				"text": "发布",
+				"iconPath": "img/favorite.png",
+				"selectedIconPath": "img/favorite1.png"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"text": "我的",
+				"iconPath": "img/account.png",
+				"selectedIconPath": "img/account1.png"
+			}
+		]
+	},
+	"networkTimeout": {
+		"request": 10000,
+		"downloadFile": 10000
+	},
+	"debug": true
 }

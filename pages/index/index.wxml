@@ -1,99 +1,95 @@
 <view class="page">
- <!--页头-->
- <view class="page__hd">
-  <view class="head">
-    <input bindblur="getstart" value="{{start}}" placeholder="始发地" type="text" />
-    <image src="/img/to.png" class="to"></image>
-    <input bindblur="getover" value="{{over}}" placeholder="目的地" auto-focus/>
-    <image src="/img/date.png" class="dateImg"></image>
-    <picker mode="date" value="{{date}}" class="date" start="{{minday}}" end="{{maxday}}" bindchange="bindDateChange">
-    <view class="picker">
-      {{date}}
+  <!--导航按钮-->
+  <view class="mgt30">
+    <view class="btn-group">
+      <view class="btn-container width80">
+        <view class="radius-left {{tabIndex==0?'bg-active':''}}" bindtap="toggleTab" data-index="0">人找车</view>
+        <view class="radius-right {{tabIndex==1?'bg-active':''}}" bindtap="toggleTab" data-index="1">车找人</view>
+      </view>
     </view>
-  </picker>
   </view>
- </view>
- <!--主体-->
- <view class="page__bd"> 
-  <view class="weui-tab">
-            <view class="weui-navbar">
-                <block wx:for="{{tabs}}" wx:key="*this">
-                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
-                        <view class="weui-navbar__title">{{item}}</view>
-                    </view>
-                </block>
-                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
-            </view>
-            <view class="weui-tab__panel">
-                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-                    
-                    <view class="weui-panel__bd">
-                        <navigator wx:for="{{list}}" wx:for-index="idx" wx:key="k" wx:for-item="item" url="{{item.url}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                                <image class="weui-media-box__thumb" src="{{item.avatarUrl}}" ></image>
-                            </view>
-                            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                                <view class="weui-media-box__title list_title"><text class="list_start">{{item.start}}</text> <image src="/img/to.png" class="to1"></image> <text class="list_over">{{item.over}}</text><text class="list_tm">{{item.tm}}</text></view>
-                                <view class="weui-media-box__desc list_desc">出发：{{item.date}} {{item.time}}</view>
-                                <view class="weui-media-box__info">
-                                    <view class="weui-media-box__info__meta list_type_{{item.tp}}">{{item.type}}</view>
-                                    <view class="weui-media-box__info__meta"><image src="/img/people.png" class="list_icon"></image><text>{{item.surplus}}</text></view>
-                                </view>
-                            </view>
-                        </navigator>
-                    </view>
-
-                </view>
-                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                    <view class="weui-panel__bd">
-                        <navigator wx:for="{{list1}}" wx:for-index="idx" wx:key="k" wx:for-item="item" url="{{item.url}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                                <image class="weui-media-box__thumb" src="{{item.avatarUrl}}" />
-                            </view>
-                            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                                <view class="weui-media-box__title list_title"><text class="list_start">{{item.start}}</text> <image src="/img/to.png" class="to1"></image> <text class="list_over">{{item.over}}</text><text class="list_tm">{{item.tm}}</text></view>
-                                <view class="weui-media-box__desc list_desc">出发：{{item.date}} {{item.time}}</view>
-                                <view class="weui-media-box__info">
-                                    <view class="weui-media-box__info__meta list_type_{{item.tp}}">{{item.type}}</view>
-                                    <view class="weui-media-box__info__meta"><image src="/img/people.png" class="list_icon"></image><text>{{item.surplus}}</text></view>
-                                </view>
-                            </view>
-                        </navigator>
-                    </view>
-                </view>
-                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-                    <view class="weui-panel__bd">
-                        <navigator wx:for="{{list2}}" wx:for-index="idx" wx:key="k" wx:for-item="item" url="{{item.url}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                                <image class="weui-media-box__thumb" src="{{item.avatarUrl}}" />
-                            </view>
-                            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                                <view class="weui-media-box__title list_title"><text class="list_start">{{item.start}}</text> <image src="/img/to.png" class="to1"></image> <text class="list_over">{{item.over}}</text><text class="list_tm">{{item.tm}}</text></view>
-                                <view class="weui-media-box__desc list_desc">出发：{{item.date}} {{item.time}}</view>
-                                <view class="weui-media-box__info">
-                                    <view class="weui-media-box__info__meta list_type_{{item.tp}}">{{item.type}}</view>
-                                    <view class="weui-media-box__info__meta"><image src="/img/people.png" class="list_icon"></image><text>{{item.surplus}}</text></view>
-                                </view>
-                            </view>
-                        </navigator>
-                    </view>
-                </view>
-            </view>
+  <!--全部/筛选-->
+  <view>
+    <view class="btn-group mgt30">
+      <view class="btn-container width100">
+        <view class="width50 border">全部</view>
+        <view class="width50 border text-gray">筛选</view>
+      </view>
+    </view>
+  </view>
+  <!--人找车-->
+  <view wx:if="{{tabIndex==0}}">
+    <!--列表项-->
+    <view>
+      <view class="weui-grids">
+        <view class="weui-grid">河南省焦作市世纪大道2001号河南理工大学</view>
+        <view class="weui-grid">
+          <view class="text-del">
+            <text decode="{{true}}">&emsp;></text>
+          </view>
+          <view class="text-blue">2017年11月17日 19:55</view>
         </view>
- </view>
-<view class="page__bd">
-    <view class="weui-loadmore" bindtap="onReachBottom" wx:if="{{!nomore}}">
-        <view class="weui-loading"></view>
-        <view class="weui-loadmore__tips">正在加载</view>
+        <view class="weui-grid">焦作市云台山</view>
+      </view>
+      <view class="flex-row border" style="padding: 15rpx">
+        <view>
+          <view>姓名：王先生</view>
+          <view class="text-gray">备注：无备注</view>
+        </view>
+        <view>
+          <view class="vertical-center row-right text-right">
+            <view class="mbtn-primary">约Ta</view>
+          </view>
+        </view>
+      </view>
     </view>
-    <view class="weui-loadmore weui-loadmore_line" wx:if="{{nomore}}">
-        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了~</view>
+  </view>
+  <!--车找人-->
+  <view wx:if="{{tabIndex==1}}">
+    <view>
+      <view class="flex-row border" style="padding: 30rpx">
+        <view>
+          <view>
+            <text class="badge bg-active">起</text>
+            河南省焦作市世纪大道2001号河南理工大学
+          </view>
+          <view class="text-gray">
+            <text class="badge bg-danger">终</text>
+            焦作市云台山
+          </view>
+        </view>
+        <view class="vertical-center">
+          <view class="vertical-center row-right text-right">
+            <view>2017年11月17日 19:55</view>
+            <view class="mbtn-primary" style="margin-left: 10rpx">约Ta</view>
+          </view>
+        </view>
+      </view>
+      <view class="other-info">
+        <view class="weui-grids">
+          <view class="weui-grid"></view>
+          <view class="weui-grid">
+            <view>6空位</view>
+          </view>
+          <view class="weui-grid">
+            <view>0.00元/人</view>
+          </view>
+        </view>
+      </view>
     </view>
+  </view>
 </view>
+<!--没有更多-->
+<view>
+  <view class="text-gray text-center" style="margin:10rpx auto;">
+    <text class="text-del">----------</text>
+    <text>没有更多了，请调头</text>
+    <text class="text-del">----------</text>
+  </view>
 </view>
-
+<!--发布按钮-->
 <navigator url="/pages/info/add">
-    <view class="add" bindtap="add">
+  <view class="add" bindtap="add">
     <image src="/img/adddy.png"></image>
-    </view>
+  </view>
 </navigator>

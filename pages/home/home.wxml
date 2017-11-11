@@ -1,0 +1,51 @@
+<view class="page">
+  <!--用户信息部分-->
+  <view>
+    <view wx:if="userInfo" class="row bg-white" style="justify-content: space-between;padding: 30rpx">
+      <!--头像昵称-->
+      <view class="row" style="justify-content: flex-start;align-items: center">
+        <view>
+          <image src="{{userInfo.avatarUrl}}" class="avatar-img" />
+        </view>
+        <view class="avatar-text">
+          <text>{{userInfo.nickName}}</text>
+        </view>
+      </view>
+      <!--两个按钮-->
+      <view class="row" style="justify-content: flex-end;align-items: center;">
+        <view>
+          <text class="lnr lnr-cloud-sync" style="font-size: 50rpx"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--折叠菜单-->
+  <view class="bg-white mgt20">
+    <view class="list-title flex-row" style="justify-content: space-between">
+      <view>
+        <text class="fa fa-car"></text>
+        我的拼车
+      </view>
+      <view class="text-right">
+        <text class="glyphicon glyphicon-menu-down"></text>
+        <!--<text class="glyphicon glyphicon-menu-up"></text>-->
+      </view>
+    </view>
+    <!--列表组-->
+    <view>
+      <view class="list-item">
+        <text class="glyphicon glyphicon-menu-right"></text>
+        我的发布
+      </view>
+    </view>
+  </view>
+  <!--单个菜单-->
+  <view>
+    <view class="list-title bg-white mgt20">
+      <view>
+        <text class="fa fa-cogs"></text>
+        我的设置
+      </view>
+    </view>
+  </view>
+</view>

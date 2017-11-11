@@ -1,0 +1,159 @@
+<view class="page">
+  <!--导航按钮-->
+  <view class="mgt30">
+    <view class="btn-group">
+      <view class="btn-container width80">
+        <view class="radius-left {{tabIndex==0?'bg-active':''}}" bindtap="toggleTab" data-index="0">人找车</view>
+        <view class="radius-right {{tabIndex==1?'bg-active':''}}" bindtap="toggleTab" data-index="1">车找人</view>
+      </view>
+    </view>
+  </view>
+  <!--控制间隔-->
+  <view class="mgt20"></view>
+  <!--人找车/车找人(表单一样)-->
+  <view>
+    <!--表单-->
+    <view>
+      <view class="weui-cells">
+        <!--出发地-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+              <text class="badge bg-active">起</text>
+              出发地
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="填写出发地" />
+          </view>
+        </view>
+        <!--目的地-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+               <text class="badge bg-danger">终</text>
+              目的地
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="填写目的地" />
+          </view>
+        </view>
+        <!--出发时间-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+              <text class="badge bg-active">
+                <text class="fa fa-clock-o"></text>
+              </text>
+              出发时间
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <view style="display: flex;">
+              <view style="flex-grow: 1">
+                <picker mode="date" value="{{date}}" start="2017-10-01" end="2099-12-31" bindchange="bindDateChange">
+                  <view class="weui-input">{{formData.date}}</view>
+                </picker>
+              </view>
+              <view style="flex-grow: 1">
+                <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+                  <view class="weui-input">{{formData.time}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="mgt20"></view>
+      <view class="weui-cells">
+        <!--姓名-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+              <text class="fa fa-user-circle"></text>
+              姓名
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请填写真实姓名" />
+          </view>
+        </view>
+        <!--性别-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+              <text class="fa fa-transgender"></text>
+              性别
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <view style="display: flex;justify-content: flex-end">
+              <view bindtap="genderChange" data-value="{{true}}">
+                <label style="display: flex;">
+                  <view>
+                    <icon class="weui-icon-checkbox_circle" type="circle" size="15" wx:if="{{!formData.gender}}"></icon>
+                    <icon class="weui-icon-checkbox_success" type="success" size="15" wx:if="{{formData.gender}}"></icon>
+                  </view>
+                  <view>男</view>
+                </label>
+              </view>
+              <view bindtap="genderChange" data-value="{{false}}">
+                <label style="display: flex;">
+                  <view>
+                    <icon class="weui-icon-checkbox_circle" type="circle" size="15" wx:if="{{formData.gender}}"></icon>
+                    <icon class="weui-icon-checkbox_success" type="success" size="15" wx:if="{{!formData.gender}}"></icon>
+                  </view>
+                  <view>女</view>
+                </label>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!--手机号-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+              <text class="fa fa-phone"></text>
+              手机号
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请填写您的手机号" />
+          </view>
+        </view>
+      </view>
+      <view class="mgt20"></view>
+      <view class="weui-cells">
+        <!--人数空位-->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">
+              <text class="fa fa-users"></text>
+              人数/空位
+            </view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" value="6人" />
+          </view>
+        </view>
+        <!--备注信息-->
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea text-left" placeholder="备注信息" style="height: 100rpx" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--间隔-->
+  <view class="mgt30"></view>
+  <!--提交按钮-->
+  <view>
+    <view class="text-center">
+      <view class="mbtn-primary width80">
+        发布约车
+      </view>
+    </view>
+  </view>
+</view>
