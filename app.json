@@ -1,10 +1,10 @@
 {
 	"pages": [
+		"pages/index/index",
 		"pages/verify/verify",
 		"pages/home/home",
 		"pages/publish/publish",
-		"pages/index/select/select",
-		"pages/index/index"
+		"pages/index/select/select"
 	],
 	"window": {
 		"backgroundTextStyle": "light",
@@ -27,13 +27,13 @@
 				"selectedIconPath": "img/auto1.png"
 			},
 			{
-				"pagePath": "pages/dynamic/index",
+				"pagePath": "pages/publish/publish",
 				"text": "发布",
 				"iconPath": "img/favorite.png",
 				"selectedIconPath": "img/favorite1.png"
 			},
 			{
-				"pagePath": "pages/my/index",
+				"pagePath": "pages/home/home",
 				"text": "我的",
 				"iconPath": "img/account.png",
 				"selectedIconPath": "img/account1.png"

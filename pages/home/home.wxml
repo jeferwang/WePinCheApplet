@@ -37,6 +37,10 @@
         <text class="glyphicon glyphicon-menu-right"></text>
         我的发布
       </view>
+      <view class="list-item">
+        <text class="glyphicon glyphicon-menu-right"></text>
+        司机审核
+      </view>
     </view>
   </view>
   <!--单个菜单-->

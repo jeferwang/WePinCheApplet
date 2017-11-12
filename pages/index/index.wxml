@@ -13,7 +13,9 @@
     <view class="btn-group mgt30">
       <view class="btn-container width100">
         <view class="width50 border">全部</view>
-        <view class="width50 border text-gray">筛选</view>
+        <navigator url="/pages/index/select/select" class="width50 border text-gray">
+          <view>筛选</view>
+        </navigator>
       </view>
     </view>
   </view>
@@ -82,14 +84,14 @@
 <!--没有更多-->
 <view>
   <view class="text-gray text-center" style="margin:10rpx auto;">
-    <text class="text-del">----------</text>
+    <text class="text-del" decode="{{true}}">&emsp;&emsp;&emsp;</text>
     <text>没有更多了，请调头</text>
-    <text class="text-del">----------</text>
+    <text class="text-del" decode="{{true}}">&emsp;&emsp;&emsp;</text>
   </view>
 </view>
 <!--发布按钮-->
-<navigator url="/pages/info/add">
-  <view class="add" bindtap="add">
+<navigator url="/pages/publish/publish" open-type="switchTab">
+  <view class="add">
     <image src="/img/adddy.png"></image>
   </view>
 </navigator>
