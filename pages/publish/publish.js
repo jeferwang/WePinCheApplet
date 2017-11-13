@@ -15,14 +15,17 @@ Page({
   toggleTab: function (e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
+    //同时切换发布类型
+    that.data.formData.publish_type = index;
     that.setData({
+      formData: that.data.formData,
       tabIndex: index
     });
   },
+  // 修改性别
   genderChange: function (e) {
     let that = this;
-    let value = e.currentTarget.dataset.value;
-    that.data.formData.gender = value;
+    that.data.formData.gender = e.currentTarget.dataset.value;
     that.setData({
       formData: that.data.formData
     });
@@ -43,5 +46,14 @@ Page({
     that.setData({
       formData: that.data.formData
     });
+  },
+  // 通用表单输入处理器
+  formInput:function  (e) {
+    console.log(e);
+  },
+  // 执行发布信息
+  publish:function  () {
+    let that=this;
+    console.log(that.data.formData);
   }
 });

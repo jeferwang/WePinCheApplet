@@ -8,10 +8,8 @@
       </view>
     </view>
   </view>
-  <!--控制间隔-->
-  <view class="mgt20"></view>
   <!--人找车/车找人(表单一样)-->
-  <view>
+  <view class="mgt20">
     <!--表单-->
     <view>
       <view class="weui-cells">
@@ -24,7 +22,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="填写出发地" />
+            <input class="weui-input" placeholder="选择出发地址" />
           </view>
         </view>
         <!--目的地-->
@@ -36,7 +34,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="填写目的地" />
+            <input class="weui-input" placeholder="选择到达地址" />
           </view>
         </view>
         <!--出发时间-->
@@ -146,11 +144,9 @@
       </view>
     </view>
   </view>
-  <!--间隔-->
-  <view class="mgt30"></view>
   <!--提交按钮-->
-  <view>
-    <view class="text-center">
+  <view style="margin: 30rpx auto">
+    <view class="text-center" bindtap="publish">
       <view class="mbtn-primary width80">
         发布约车
       </view>

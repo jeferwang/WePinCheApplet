@@ -7,47 +7,52 @@ App({
     openid: '',
     Urln: 'http://www.sy.com',
     appid: null,
-    appsecret: null
+    appsecret: null,
+    // 附加信息
+    path: '/weidogs/weipinche/public'
   },
   onLaunch: function () {
-    let that = this;
+    const that = this;
+    // 生成apiPath
+    that.globalData.apiPath = that.globalData.Urln + that.globalData.path;
+    // 申请权限
+    that.checkAuth();
+    // 向后台添加用户
+    that.setUser();
   },
   /**
-   * 获取用户信息
-   * @param cb 回调
+   * 检查并获取权限
    */
-  getUserInfo: function (cb = null) {
-    let that = this;
-    wx.getUserInfo({
-      withCredentials: false,
-      lang: 'zh_CN',
-      success: function (resp) {
-        cb(resp);
-      },
+  checkAuth: function () {
+    const that = this;
+    wx.getLocation({
       fail: function () {
         that.resetAuth();
-      },
-      complete: function () {
       }
     });
-    
+    wx.getUserInfo({
+      fail: function () {
+        that.resetAuth();
+      }
+    });
   },
   /**
-   * 重新申请授权
+   * 提醒用户重新设置权限
    */
   resetAuth: function () {
     let that = this;
     wx.getSetting({
       success: function (setting) {
-        if (!setting.authSetting['scope.userInfo']) {
+        // 同时检查用户基本信息权限和位置信息权限
+        if (!setting.authSetting['scope.userInfo'] || !setting.authSetting['scope.userLocation']) {
           wx.showModal({
             title: '提示',
-            content: '请允许我们获取您的基本信息,否则可能无法正常为您服务',
+            content: '请允许我们获取您的基本信息和位置信息，否则我们无法为您提供有效的服务',
             showCancel: false,
             success: function () {
               wx.openSetting({
                 success: function (res) {
-                  if (!res.authSetting['scope.userInfo']) {
+                  if (!res.authSetting['scope.userInfo'] || !res.authSetting['scope.userLocation']) {
                     that.resetAuth();
                   }
                 }
@@ -58,12 +63,16 @@ App({
       }
     });
   },
-  requestOpenId: function (e) {
+  /**
+   * 向后台请求openid
+   * 设置openid缓存
+   */
+  setUser: function () {
     const that = this;
     wx.login({
       success: function (resp1) {
         wx.request({
-          url: that.globalData.path_info.api + '/api/applet/getOpenIdByCode',
+          url: that.globalData.apiPath + '/api/applet/getOpenIdByCode',
           data: {
             applet_id: that.globalData.applet_id,
             js_code: resp1.code
@@ -74,7 +83,7 @@ App({
             wx.getUserInfo({
               success: function (resp3) {
                 wx.request({
-                  url: that.globalData.path_info.api + '/api/user/setUser',
+                  url: that.globalData.apiPath + '/api/user/setUser',
                   method: 'POST',
                   data: {
                     applet_id: that.globalData.applet_id,
@@ -95,4 +104,5 @@ App({
       }
     });
   }
-});
+})
+;
