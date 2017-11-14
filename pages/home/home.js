@@ -6,11 +6,15 @@ Page({
   // 加载
   onLoad: function (options) {
     let that = this;
-    app.getUserInfo(function (resp) {
-      console.log(resp.userInfo);
-      that.setData({
-        userInfo: resp.userInfo
-      });
+    // 加载用户信息
+    wx.getUserInfo({
+      withCredentials: false,
+      lang: 'zh_CN',
+      success: function (resp) {
+        that.setData({
+          userInfo: resp.userInfo
+        });
+      }
     });
   }
 });

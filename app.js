@@ -18,7 +18,7 @@ App({
     // 申请权限
     that.checkAuth();
     // 向后台添加用户
-    that.setUser();
+    that.getOpenid(true, false);
   },
   /**
    * 检查并获取权限
@@ -66,8 +66,9 @@ App({
   /**
    * 向后台请求openid
    * 设置openid缓存
+   * 设置用户
    */
-  setUser: function () {
+  getOpenid: function (setUser = true, callback = false) {
     const that = this;
     wx.login({
       success: function (resp1) {
@@ -79,22 +80,30 @@ App({
           },
           method: 'POST',
           success: function (resp2) {
-            wx.setStorageSync('openid', resp2.data.data.openid);
-            wx.getUserInfo({
-              success: function (resp3) {
-                wx.request({
-                  url: that.globalData.apiPath + '/api/user/setUser',
-                  method: 'POST',
-                  data: {
-                    applet_id: that.globalData.applet_id,
-                    openid: resp2.data.data.openid,
-                    user_img: resp3.userInfo.avatarUrl,
-                    name: resp3.userInfo.nickName,
-                    addr: resp3.userInfo.country + resp3.userInfo.province + resp3.userInfo.city
-                  }
-                });
-              }
-            });
+            const openid = resp2.data.data.openid;
+            wx.setStorageSync('openid', openid);
+            if (callback) {
+              callback(openid);
+            }
+            if (setUser) {
+              wx.getUserInfo({
+                withCredentials: false,
+                lang: 'zh_CN',
+                success: function (resp3) {
+                  wx.request({
+                    url: that.globalData.apiPath + '/api/user/setUser',
+                    method: 'POST',
+                    data: {
+                      applet_id: that.globalData.applet_id,
+                      openid: resp2.data.data.openid,
+                      user_img: resp3.userInfo.avatarUrl,
+                      name: resp3.userInfo.nickName,
+                      addr: resp3.userInfo.country + resp3.userInfo.province + resp3.userInfo.city
+                    }
+                  });
+                }
+              });
+            }
           }, fail: function (resp) {
             console.log('requestOpenId fail');
           }
@@ -103,6 +112,62 @@ App({
         console.log('login error');
       }
     });
+  },
+  /**
+   * 加载中wrapper
+   */
+  loadingWrapper: function (callback, title = '加载中...') {
+    wx.showLoading({
+      title: title
+    });
+    callback();
+    wx.hideLoading();
+  },
+  /**
+   * 包装http请求函数
+   * 自动带上applet_id
+   */
+  requestWithAppletId: function (params) {
+    const that = this;
+    let data = params.data || {};
+    const newData = Object.assign({applet_id: that.globalData.applet_id}, data);
+    // 赋予新的发送数据
+    params.data = newData;
+    // 默认请求方法
+    if (!params.method) {
+      params.method = "POST";
+    }
+    // 加载默认错误处理函数
+    if (!params.fail) {
+      params.fail = function () {
+        wx.showModal({
+          title: 'Error',
+          showCancel: false,
+          content: '加载失败',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+            }
+          }
+        });
+      };
+    }
+    // 发起请求
+    wx.request(params);
+  },
+  /**
+   * 带上openid参数执行函数
+   */
+  withOpenid: function (callback) {
+    const that = this;
+    let openid = wx.getStorageSync('openid');
+    if (!openid) {
+      that.getOpenid(true, function (oid) {
+        callback(oid);
+      });
+    }else{
+      callback(openid);
+    }
   }
 })
 ;

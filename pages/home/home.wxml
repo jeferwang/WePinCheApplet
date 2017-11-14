@@ -37,10 +37,12 @@
         <text class="glyphicon glyphicon-menu-right"></text>
         我的发布
       </view>
-      <view class="list-item">
-        <text class="glyphicon glyphicon-menu-right"></text>
-        司机审核
-      </view>
+      <navigator class="list-item" url="/pages/verify/verify">
+        <view>
+          <text class="glyphicon glyphicon-menu-right"></text>
+          司机审核
+        </view>
+      </navigator>
     </view>
   </view>
   <!--单个菜单-->

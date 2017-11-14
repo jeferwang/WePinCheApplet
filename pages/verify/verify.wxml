@@ -11,7 +11,7 @@
           </view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请填写真实姓名" />
+          <input class="weui-input" placeholder="请填写真实姓名" data-key="user_name" bindinput="formInput" value="{{formData.user_name}}" />
         </view>
       </view>
       <!--手机号-->
@@ -22,7 +22,7 @@
           </view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请填写您的手机号" />
+          <input class="weui-input" placeholder="请填写您的手机号" data-key="phone" bindinput="formInput" value="{{formData.phone}}" />
         </view>
       </view>
     </view>
@@ -36,7 +36,7 @@
           </view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请填写您的车型" />
+          <input class="weui-input" placeholder="请填写您的车型" data-key="car_type" bindinput="formInput" value="{{formData.car_type}}" />
         </view>
       </view>
       <!--车牌号-->
@@ -47,7 +47,7 @@
           </view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请填写您的车牌号" />
+          <input class="weui-input" placeholder="请填写您的车牌号" data-key="car_num" bindinput="formInput" value="{{formData.car_num}}" />
         </view>
       </view>
       <!--身份证号-->
@@ -58,7 +58,7 @@
           </view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请填写您的身份证号" />
+          <input class="weui-input" placeholder="请填写您的身份证号" data-key="id_num" bindinput="formInput" value="{{formData.id_num}}" />
         </view>
       </view>
     </view>
@@ -74,8 +74,8 @@
       </view>
       <view class="weui-cell" style="padding: 0 20rpx">
         <view class="img-box">
-          <image src="/img/default.png" mode="aspectFit" style="width:350rpx;height:240rpx;" />
-          <image src="/img/default.png" mode="aspectFit" style="width:350rpx;height:240rpx;margin-left: 10rpx" />
+          <image src="{{formData.img1 || '/img/default.png'}}" mode="aspectFit" style="width:350rpx;height:240rpx;" data-key="img1" bindtap="chooseImage" />
+          <image src="{{formData.img2 || '/img/default.png'}}" mode="aspectFit" style="width:350rpx;height:240rpx;margin-left: 10rpx" data-key="img2" bindtap="chooseImage" />
         </view>
       </view>
       <view class="img-box" style="padding-bottom: 20rpx;">
@@ -96,8 +96,8 @@
       </view>
       <view class="weui-cell" style="padding: 0 20rpx">
         <view class="img-box">
-          <image src="/img/default.png" mode="aspectFit" style="width:350rpx;height:240rpx;" />
-          <image src="/img/default.png" mode="aspectFit" style="width:350rpx;height:240rpx;margin-left: 10rpx" />
+          <image src="{{formData.img3 || '/img/default.png'}}" mode="aspectFit" style="width:350rpx;height:240rpx;" data-key="img3" bindtap="chooseImage" />
+          <image src="{{formData.img4 || '/img/default.png'}}" mode="aspectFit" style="width:350rpx;height:240rpx;margin-left: 10rpx" data-key="img4" bindtap="chooseImage" />
         </view>
       </view>
       <view class="img-box" style="padding-bottom: 20rpx;">
@@ -113,7 +113,7 @@
   <!--提交按钮-->
   <view>
     <view class="text-center mgt20" style="margin-bottom: 20rpx">
-      <view class="mbtn-primary width80">
+      <view class="mbtn-primary width80" bindtap="publish">
         发布约车
       </view>
     </view>

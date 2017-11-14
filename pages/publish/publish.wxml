@@ -22,7 +22,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="选择出发地址" />
+            <input class="weui-input" placeholder="选择出发地址" bindtap="chooseLocation" data-key="start_place" value="{{formData.start_place}}" />
           </view>
         </view>
         <!--目的地-->
@@ -34,7 +34,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="选择到达地址" />
+            <input class="weui-input" placeholder="选择到达地址" bindtap="chooseLocation" data-key="end_place" value="{{formData.end_place}}"  />
           </view>
         </view>
         <!--出发时间-->
@@ -74,7 +74,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请填写真实姓名" />
+            <input class="weui-input" placeholder="请填写真实姓名" bindinput="formInput" data-key="user_name" value="{{formData.user_name}}" />
           </view>
         </view>
         <!--性别-->
@@ -117,7 +117,7 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请填写您的手机号" />
+            <input class="weui-input" placeholder="请填写您的手机号" bindinput="formInput" data-key="phone" value="{{formData.phone}}" />
           </view>
         </view>
       </view>
@@ -132,13 +132,14 @@
             </view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" value="6人" />
+            <input class="weui-input" bindinput="formInput" data-key="people_num" value="{{formData.people_num}}" />
           </view>
+          <view class="weui-cell__ft">人</view>
         </view>
         <!--备注信息-->
         <view class="weui-cell">
           <view class="weui-cell__bd">
-            <textarea class="weui-textarea text-left" placeholder="备注信息" style="height: 100rpx" />
+            <textarea class="weui-textarea text-left" placeholder="备注信息" style="height: 100rpx" bindinput="formInput" data-key="remark" value="{{formData.remark}}" />
           </view>
         </view>
       </view>
